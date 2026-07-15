@@ -2,76 +2,146 @@
 
 ## Overview
 
-This project is a scalable Selenium automation framework built using Python and Pytest to automate end-to-end testing of an e-commerce application.
+A robust and scalable Selenium automation framework developed using **Python**, **Pytest**, and the **Page Object Model (POM)** design pattern to automate end-to-end testing of an e-commerce web application.
 
-The framework follows the Page Object Model (POM) design pattern and supports data-driven testing, HTML reporting, screenshots on failure, and CI/CD using GitHub Actions.
+The framework is designed with maintainability and reusability in mind. It supports data-driven testing, cross-browser execution, HTML reports, screenshots on test failure, and continuous integration using GitHub Actions.
 
 ---
 
 ## Features
 
 - Page Object Model (POM)
-- Pytest Fixtures
-- Data-driven Testing
-- Cross Browser Support
-- HTML Reports
-- Automatic Screenshot Capture
-- GitHub Actions CI
-- Logging
+- Pytest Framework
+- Data-Driven Testing
+- Cross Browser Support (Chrome & Edge)
 - Explicit Waits
+- HTML Test Reports
+- Automatic Screenshot Capture on Failure
+- GitHub Actions CI
+- Reusable Utility Functions
 
 ---
 
 ## Tech Stack
 
-- Python
-- Selenium
-- Pytest
-- webdriver-manager
-- GitHub Actions
+| Technology | Purpose |
+|------------|---------|
+| Python | Programming Language |
+| Selenium WebDriver | Browser Automation |
+| Pytest | Test Framework |
+| webdriver-manager | Driver Management |
+| GitHub Actions | Continuous Integration |
+| HTML Reports | Test Reporting |
 
 ---
 
-## Project Structure
+## Framework Architecture
 
 ```
-project/
+selenium-ecommerce-automation/
 │
 ├── pages/
+│   ├── base_page.py
+│   ├── login_page.py
+│   ├── inventory_page.py
+│   ├── cart_page.py
+│   └── checkout_page.py
+│
 ├── tests/
+│   ├── test_login.py
+│   ├── test_cart.py
+│   ├── test_checkout.py
+│
 ├── utilities/
+│
 ├── testdata/
+│
 ├── reports/
+│
 ├── screenshots/
-└── conftest.py
+│
+├── conftest.py
+│
+└── requirements.txt
 ```
 
 ---
 
 ## Test Scenarios
 
-- Login
+### Authentication
+
+- Valid Login
 - Invalid Login
-- Add Product
-- Remove Product
-- Checkout
 - Logout
+
+### Inventory
+
+- Verify Products
+- Add Product to Cart
+- Remove Product
+
+### Cart
+
+- Verify Cart Items
+- Remove Item
+- Continue Shopping
+
+### Checkout
+
+- Complete Checkout
+- Verify Order Confirmation
 
 ---
 
-## Run
+## Installation
+
+Clone the repository
+
+```bash
+git clone <repository-url>
+```
+
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
+```
 
+Run all tests
+
+```bash
 pytest
 ```
+
+Generate HTML report
+
+```bash
+pytest --html=reports/report.html
+```
+
+---
+
+## Project Highlights
+
+- Clean Page Object Model architecture
+- Modular and reusable code
+- Easy to extend with new test cases
+- Supports continuous integration using GitHub Actions
+- Automatic screenshot capture for failed test cases
 
 ---
 
 ## Future Improvements
 
-- Parallel Execution
-- Docker Support
-- Allure Reports
-- Jenkins Pipeline
+- Docker support
+- Parallel execution using pytest-xdist
+- Allure reporting
+- Jenkins Pipeline Integration
+- Browser execution through command-line arguments
+
+---
+
+## Author
+
+Apurwa Kashyap
