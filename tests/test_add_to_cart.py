@@ -1,14 +1,15 @@
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 from pages.cart_page import CartPage
+from config.config_reader import config
 
 
 def test_add_to_cart(driver):
 
     LoginPage(driver).login(
-        "standard_user",
-        "secret_sauce"
-    )
+        config.username,
+        config.password
+   )
 
     inventory = InventoryPage(driver)
 

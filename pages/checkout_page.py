@@ -1,8 +1,6 @@
 from selenium.webdriver.common.by import By
-
 from pages.base_page import BasePage
-from utils.waits import wait_for_element
-
+from utils.waits import WaitUtils
 
 class CheckoutPage(BasePage):
 
@@ -69,10 +67,8 @@ class CheckoutPage(BasePage):
         )
 
     def continue_checkout(self):
-
-        self.click(
-            self.CONTINUE_BUTTON
-        )
+        self.click(self.CONTINUE_BUTTON)
+        
 
     def finish_order(self):
 
@@ -81,8 +77,4 @@ class CheckoutPage(BasePage):
         )
 
     def get_success_message(self):
-
-        return wait_for_element(
-            self.driver,
-            self.SUCCESS_MESSAGE
-        ).text
+        return self.get_text(self.SUCCESS_MESSAGE)
