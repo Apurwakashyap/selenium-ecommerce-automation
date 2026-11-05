@@ -1,5 +1,4 @@
 from selenium import webdriver
-
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.edge.service import Service as EdgeService
 
@@ -7,30 +6,32 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 
-def get_driver(browser):
+def get_driver(browser, headless=False):
+    """Create and return a configured Selenium WebDriver instance."""
+    browser = browser.strip().lower()
 
-    if browser.lower() == "chrome":
+    if browser == "chrome":
+        options = webdriver.ChromeOptions()
+        if headless:
+            options.add_argument("--headless=new")
+            options.add_argument("--window-size=1920,1080")
 
-        driver = webdriver.Chrome(
-            service=ChromeService(
-                ChromeDriverManager().install()
-            )
+        return webdriver.Chrome(
+            service=ChromeService(ChromeDriverManager().install()),
+            options=options,
         )
 
-    elif browser.lower() == "edge":
+    if browser == "edge":
+        options = webdriver.EdgeOptions()
+        if headless:
+            options.add_argument("--headless=new")
+            options.add_argument("--window-size=1920,1080")
 
-        driver = webdriver.Edge(
-            service=EdgeService(
-                EdgeChromiumDriverManager().install()
-            )
+        return webdriver.Edge(
+            service=EdgeService(EdgeChromiumDriverManager().install()),
+            options=options,
         )
 
-    else:
-
-        raise ValueError(
-            f"Browser {browser} not supported"
-        )
-
-    driver.maximize_window()
-
-    return driver
+    raise ValueError(
+        f"Unsupported browser: '{browser}'. Supported browsers: chrome, edge."
+    )
