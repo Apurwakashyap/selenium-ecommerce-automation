@@ -12,6 +12,13 @@ def get_driver(browser, headless=False):
 
     if browser == "chrome":
         options = webdriver.ChromeOptions()
+
+        prefs = {
+            "credentials_enable_service": False,
+            "profile.password_manager_enabled": False,
+            "profile.password_manager_leak_detection": False,
+        }
+        options.add_experimental_option("prefs", prefs)
         if headless:
             options.add_argument("--headless=new")
             options.add_argument("--window-size=1920,1080")
